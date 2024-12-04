@@ -20,6 +20,7 @@ public class Cliente {
 			System.out.println("Conexión realizada con el servidor");
 			dataOutputStream = new DataOutputStream(socket.getOutputStream());
 			dataOutputStream.writeUTF("Hola servidor, soy un cliente");
+			dataOutputStream.flush();
 			
 			dataInputStream = new DataInputStream(socket.getInputStream());
 			System.out.println(dataInputStream.readUTF());
@@ -28,12 +29,12 @@ public class Cliente {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (null != dataOutputStream)
-					dataOutputStream.close();
-			} catch (IOException e) {}
-			try {
 				if (null != dataInputStream)
 					dataInputStream.close();
+			} catch (IOException e) {}
+			try {
+				if (null != dataOutputStream)
+					dataOutputStream.close();
 			} catch (IOException e) {}
 			try {
 				if (null != socket)

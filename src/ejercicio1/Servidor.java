@@ -25,6 +25,7 @@ public class Servidor {
 				dataOutputStream = new DataOutputStream(socket.getOutputStream());
 				dataOutputStream.writeUTF("Recibido " + dataInputStream.readUTF() + "\n"
 						+ "Saludos desde el servidor al cliente no: " + (i + 1));
+				dataOutputStream.flush();
 			}
 			
 			Thread.sleep(1000);
