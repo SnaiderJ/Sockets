@@ -16,34 +16,29 @@ public class Cliente {
 
 		try {
 			socket = new Socket(ipServer, puertoServer);
-			
+
 			System.out.println("Conexión realizada con el servidor");
-			dataOutputStream =  new DataOutputStream(socket.getOutputStream());
+			dataOutputStream = new DataOutputStream(socket.getOutputStream());
 			dataOutputStream.writeUTF("Hola servidor, soy un cliente");
 			
 			dataInputStream = new DataInputStream(socket.getInputStream());
 			System.out.println(dataInputStream.readUTF());
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				if (null != dataOutputStream)
 					dataOutputStream.close();
-			} catch (IOException e) {
-				// No importa...
-			}
+			} catch (IOException e) {}
 			try {
 				if (null != dataInputStream)
 					dataInputStream.close();
-			} catch (IOException e) {
-				// No importa...
-			}
+			} catch (IOException e) {}
 			try {
 				if (null != socket)
 					socket.close();
-			} catch (IOException e) {
-				// No importa...
-			}
+			} catch (IOException e) {}
 		}
 	}
 }
